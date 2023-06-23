@@ -23,4 +23,9 @@ app.get('/campgrounds', async (req, res) => {
   res.render('campgrounds/index', { campgrounds });
 });
 
+app.get('/campgrounds/:id', async (req, res) => {
+  const campground = await Campground.findById(req.params.id);
+  res.render('campgrounds/show', { campground });
+});
+
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}...`));
