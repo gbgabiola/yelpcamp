@@ -18,16 +18,9 @@ app.get('/', (req, res) => {
   res.render('home');
 });
 
-app.get('/new-campground', async (req, res) => {
-  const camp = new Campground({
-    title: 'Backyard Campsite',
-    location: 'My Backyard',
-    price: 12.99,
-    description: 'Near and cheap camping!',
-  });
-
-  await camp.save();
-  res.send(camp);
+app.get('/campgrounds', async (req, res) => {
+  const campgrounds = await Campground.find();
+  res.render('campgrounds/index', { campgrounds });
 });
 
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}...`));
