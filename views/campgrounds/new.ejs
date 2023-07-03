@@ -2,7 +2,7 @@
 <div class="row">
   <h1 class="text-center">New Campground</h1>
   <div class="col-6 offset-3">
-    <form action="/campgrounds" method="POST">
+    <form action="/campgrounds" method="POST" class="validated-form" novalidate>
       <div class="mb-3">
         <label for="title" class="form-label">Title</label>
         <input
@@ -12,6 +12,7 @@
           class="form-control"
           required
         />
+        <div class="valid-feedback">Looks good</div>
       </div>
 
       <div class="mb-3">
@@ -23,6 +24,7 @@
           class="form-control"
           required
         />
+        <div class="valid-feedback">Looks good</div>
       </div>
 
       <div class="mb-3">
@@ -34,6 +36,7 @@
           class="form-control"
           required
         />
+        <div class="valid-feedback">Looks good</div>
       </div>
 
       <div class="mb-3">
@@ -50,6 +53,7 @@
             aria-describedby="price-label"
             required
           />
+          <div class="valid-feedback">Looks good</div>
         </div>
       </div>
 
@@ -61,6 +65,7 @@
           class="form-control"
           required
         ></textarea>
+        <div class="valid-feedback">Looks good</div>
       </div>
 
       <div class="mb-3">
