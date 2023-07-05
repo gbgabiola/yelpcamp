@@ -34,10 +34,6 @@ app.get(
   })
 );
 
-app.get('/campgrounds/new', (req, res) => {
-  res.render('campgrounds/new');
-});
-
 app.post(
   '/campgrounds',
   catchAsync(async (req, res) => {
@@ -49,19 +45,15 @@ app.post(
   })
 );
 
+app.get('/campgrounds/new', (req, res) => {
+  res.render('campgrounds/new');
+});
+
 app.get(
   '/campgrounds/:id',
   catchAsync(async (req, res) => {
     const campground = await Campground.findById(req.params.id);
     res.render('campgrounds/show', { campground });
-  })
-);
-
-app.get(
-  '/campgrounds/:id/edit',
-  catchAsync(async (req, res) => {
-    const campground = await Campground.findById(req.params.id);
-    res.render('campgrounds/edit', { campground });
   })
 );
 
@@ -72,6 +64,14 @@ app.put(
       ...req.body.campground,
     });
     res.redirect(`/campgrounds/${campground._id}`);
+  })
+);
+
+app.get(
+  '/campgrounds/:id/edit',
+  catchAsync(async (req, res) => {
+    const campground = await Campground.findById(req.params.id);
+    res.render('campgrounds/edit', { campground });
   })
 );
 
