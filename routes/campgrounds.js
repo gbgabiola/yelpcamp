@@ -55,6 +55,7 @@ router.put(
     const campground = await Campground.findByIdAndUpdate(req.params.id, {
       ...req.body.campground,
     });
+    req.flash('success', 'Successfully updated campground.');
     res.redirect(`/campgrounds/${campground._id}`);
   })
 );
@@ -71,6 +72,7 @@ router.delete(
   '/:id',
   catchAsync(async (req, res) => {
     await Campground.findByIdAndDelete(req.params.id);
+    req.flash('success', 'Successfully deleted campground.');
     res.redirect('/campgrounds');
   })
 );
