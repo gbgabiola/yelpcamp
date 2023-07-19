@@ -1,11 +1,14 @@
 const ejsMate = require('ejs-mate');
 const express = require('express');
 const flash = require('connect-flash');
+const LocalStrategy = require('passport-local');
 const methodOverride = require('method-override');
 const mongoose = require('mongoose');
+const passport = require('passport');
 const path = require('path');
 const session = require('express-session');
 const PORT = 3000;
+const User = require('./models/user');
 const campgroundRoutes = require('./routes/campgrounds');
 const reviewRoutes = require('./routes/reviews');
 const ExpressError = require('./utils/ExpressError');
@@ -37,6 +40,12 @@ const sessionConfig = {
 };
 app.use(session(sessionConfig));
 app.use(flash());
+
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
   res.locals.success = req.flash('success');
