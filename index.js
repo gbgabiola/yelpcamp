@@ -11,6 +11,7 @@ const PORT = 3000;
 const User = require('./models/user');
 const campgroundRoutes = require('./routes/campgrounds');
 const reviewRoutes = require('./routes/reviews');
+const userRoutes = require('./routes/users');
 const ExpressError = require('./utils/ExpressError');
 
 mongoose
@@ -53,6 +54,7 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use('/', userRoutes);
 app.use('/campgrounds', campgroundRoutes);
 app.use('/campgrounds/:id/reviews', reviewRoutes);
 
