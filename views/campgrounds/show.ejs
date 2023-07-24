@@ -13,6 +13,9 @@
       </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item text-muted"><%= campground.location %></li>
+        <li class="list-group-item">
+          Submitted by <%= campground.author.username %>
+        </li>
         <li class="list-group-item">&dollar;<%= campground.price %>/night</li>
       </ul>
 
