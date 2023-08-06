@@ -35,9 +35,22 @@
         <div class="valid-feedback">Looks good</div>
       </div>
 
-      <div class="mb-3">
-        <label for="image" class="form-label">Add Images</label>
-        <input type="file" id="image" name="image" multiple />
+      <div class="mb-3 custom-file">
+        <label for="formFileMultiple" class="form-label"
+          >Upload More Images</label
+        >
+        <input
+          type="file"
+          id="formFileMultiple"
+          name="image"
+          class="form-control"
+          multiple
+          required
+        />
+        <span class="custom-file-label text-muted"></span>
+        <div class="invalid-feedback">
+          This campground would look much better with a picture.
+        </div>
       </div>
 
       <div class="mb-3">
