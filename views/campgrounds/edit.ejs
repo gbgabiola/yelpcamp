@@ -45,12 +45,27 @@
           name="image"
           class="form-control"
           multiple
-          required
         />
         <span class="custom-file-label text-muted"></span>
-        <div class="invalid-feedback">
-          This campground would look much better with a picture.
+      </div>
+
+      <div class="mb-3">
+        <% campground.images.forEach((img, i) => { %>
+        <img
+          src="<%= img.url %>"
+          class="img-thumbnail"
+          alt="<%= campground.title %> Image"
+        />
+        <div class="form-check-inline">
+          <input
+            type="checkbox"
+            id="img-<%= i %>"
+            name="deleteImages[]"
+            value="<%= img.filename %>"
+          />
         </div>
+        <label for="img-<%= i %>">Delete?</label>
+        <% }); %>
       </div>
 
       <div class="mb-3">
