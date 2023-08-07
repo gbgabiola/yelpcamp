@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+
 const ejsMate = require('ejs-mate');
 const express = require('express');
 const flash = require('connect-flash');
