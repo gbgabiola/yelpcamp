@@ -1,5 +1,6 @@
 <% layout('layouts/boilerplate') %>
 <link rel="stylesheet" href="/css/starability-basic.min.css" />
+
 <div class="row">
   <div class="col-6">
     <div id="campgroundCarousel" class="carousel slide">
@@ -70,6 +71,8 @@
   </div>
 
   <div class="col-6">
+    <div id="map"></div>
+
     <% if (currentUser) { %>
     <h2>Leave a Review</h2>
     <form
@@ -139,3 +142,9 @@
     <% } %>
   </div>
 </div>
+
+<script>
+  const mapToken = '<%- process.env.MAPBOX_TOKEN %>';
+  const campground = <%- JSON.stringify(campground) %>;
+</script>
+<script src="/js/showPageMap.js"></script>
