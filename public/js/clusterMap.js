@@ -1,15 +1,15 @@
 mapboxgl.accessToken = mapToken;
 const map = new mapboxgl.Map({
   container: 'map',
-  style: 'mapbox://styles/mapbox/dark-v11',
+  style: 'mapbox://styles/mapbox/light-v11',
   center: [-103.5917, 40.6699],
   zoom: 3,
 });
 
 map.on('load', () => {
-  map.addSource('earthquakes', {
+  map.addSource('campgrounds', {
     type: 'geojson',
-    data: 'https://docs.mapbox.com/mapbox-gl-js/assets/earthquakes.geojson',
+    data: campgrounds,
     cluster: true,
     clusterMaxZoom: 14,
     clusterRadius: 50,
@@ -18,26 +18,26 @@ map.on('load', () => {
   map.addLayer({
     id: 'clusters',
     type: 'circle',
-    source: 'earthquakes',
+    source: 'campgrounds',
     filter: ['has', 'point_count'],
     paint: {
       'circle-color': [
         'step',
         ['get', 'point_count'],
-        '#51bbd6',
-        100,
-        '#f1f075',
-        750,
-        '#f28cb1',
+        '#00bcd4',
+        10,
+        '#2196f3',
+        30,
+        '#3f51b5',
       ],
-      'circle-radius': ['step', ['get', 'point_count'], 20, 100, 30, 750, 40],
+      'circle-radius': ['step', ['get', 'point_count'], 15, 10, 20, 30, 25],
     },
   });
 
   map.addLayer({
     id: 'cluster-count',
     type: 'symbol',
-    source: 'earthquakes',
+    source: 'campgrounds',
     filter: ['has', 'point_count'],
     layout: {
       'text-field': ['get', 'point_count_abbreviated'],
@@ -49,7 +49,7 @@ map.on('load', () => {
   map.addLayer({
     id: 'unclustered-point',
     type: 'circle',
-    source: 'earthquakes',
+    source: 'campgrounds',
     filter: ['!', ['has', 'point_count']],
     paint: {
       'circle-color': '#11b4da',
@@ -65,7 +65,7 @@ map.on('load', () => {
     });
     const clusterId = features[0].properties.cluster_id;
     map
-      .getSource('earthquakes')
+      .getSource('campgrounds')
       .getClusterExpansionZoom(clusterId, (err, zoom) => {
         if (err) return;
 
