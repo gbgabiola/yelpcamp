@@ -8,6 +8,7 @@ const flash = require('connect-flash');
 const LocalStrategy = require('passport-local');
 const methodOverride = require('method-override');
 const mongoose = require('mongoose');
+const mongoSanitize = require('express-mongo-sanitize');
 const passport = require('passport');
 const path = require('path');
 const session = require('express-session');
@@ -32,6 +33,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(mongoSanitize());
 
 const sessionConfig = {
   secret: 'thisshouldbeabettersecret!',
